@@ -8,10 +8,14 @@ img {
 }
 
 #score{
-	margin : 0 0 0 500px;
-	font-size: 25px;
+	margin : 0 0 0 480px;
+	font-size: 20px;
 }
 
+#movements{
+    margin : 0 0 0 480px;
+    font-size: 20px;
+}
 
 .button_game {
     background: -moz-linear-gradient(center top , #EDEDED 5%, #DFDFDF 100%) repeat scroll 0 0 #EDEDED;

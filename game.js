@@ -1,10 +1,24 @@
 function ScoreBoardGameControl (){
 	var score = 0;
-	var POINT_GAME = 1;
-	var TEXT_SCORE = "Movimentos : "
+	var moves = 0;
+	var POINTS_GAIN = 3;
+	var POINTS_LOST = 1;
+	var TEXT_SCORE = "Pontuação: "
+	var TEXT_MOVEMENTS = "Movimentos: "
 
 	var TOTAL_CORRECT = 10;
 	var corrects = 0;
+
+	this.initializeMovements = function(){
+		var movementsDiv = document.getElementById("movements");
+		movementsDiv.innerHTML =  TEXT_MOVEMENTS + moves;
+	}
+
+	this.updateMovements =  function (){
+		moves++;
+		var movementsDiv = document.getElementById("movements");
+		movementsDiv.innerHTML =  TEXT_MOVEMENTS + moves;
+	}
 
 	this.updateScore =  function (){
 		var scoreDiv = document.getElementById("score");
@@ -13,14 +27,15 @@ function ScoreBoardGameControl (){
 
 	this.incrementScore =  function (){
 		corrects++;
-		score+= POINT_GAME;
+		score+=POINTS_GAIN;
 		if (corrects ==  TOTAL_CORRECT){
+			this.updateScore();
 			alert("Fim de Jogo! Seu Score foi " + score);
 		}
 	}
 
 	this.decrementScore =  function (){
-		score+= POINT_GAME;
+		score-=POINTS_LOST;
 	}
 }
 
@@ -106,6 +121,7 @@ function CardGame (cards , controllerLogicGame,scoreBoard){
 	this.show =  function (){
 		this.clear();
 		scoreBoardGameControl.updateScore();
+		scoreBoardGameControl.initializeMovements();
 		var cardCount = 0;
 		var game = document.getElementById("game");
 		for(var i = 0 ; i < LINES; i++){
@@ -126,10 +142,12 @@ function CardGame (cards , controllerLogicGame,scoreBoard){
 						logicGame.addEventListener("correct",function (){
 							scoreBoardGameControl.incrementScore();
 							scoreBoardGameControl.updateScore();
+							scoreBoardGameControl.updateMovements();
 						});
 						logicGame.addEventListener("wrong",function (){
 							scoreBoardGameControl.decrementScore();
 							scoreBoardGameControl.updateScore();
+							scoreBoardGameControl.updateMovements();
 						});
 
 						logicGame.addEventListener("show",function (){
