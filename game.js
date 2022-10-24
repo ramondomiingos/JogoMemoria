@@ -211,11 +211,9 @@ function BuilderCardGame(){
 }
 
 function GameControl (){
-
-}
-
-GameControl.createGame = function(){
-	var builderCardGame =  new BuilderCardGame();
-	cardGame = builderCardGame.doCardGame();
-	cardGame.show();
+	createGame = function(){
+		var builderCardGame =  new BuilderCardGame();
+		cardGame = builderCardGame.doCardGame();
+		cardGame.show();
+	}
 }
